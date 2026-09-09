@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no" />
+  <meta name="theme-color" content="#0b1016" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Tibia Router" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" />
+  <link rel="apple-touch-icon" href="./icon.svg" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Tibia Router Mobile</title>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="game-shell" id="gameShell">
+      <video id="streamVideo" autoplay playsinline muted class="stream-video hidden"></video>
+      <div class="demo-scene" id="demoScene" aria-label="Vista de demostración">
+        <div class="demo-grid"></div>
+        <div class="demo-character" id="demoCharacter">◆</div>
+        <div class="demo-monster monster-a">✦</div>
+        <div class="demo-monster monster-b">✦</div>
+        <div class="demo-message"><strong>Tibia Router Mobile</strong><span>Modo demo. Conecta un host Windows para recibir el cliente oficial.</span></div>
+      </div>
+      <div class="input-surface" id="inputSurface" aria-label="Superficie táctil"></div>
+      <header class="hud-top">
+        <div class="status-pill status-demo" id="statusPill"><span class="status-dot"></span><span id="statusText">DEMO</span></div>
+        <div class="top-actions"><div class="quality-pill" id="qualityPill">720p · DATA</div><button class="icon-button" id="settingsButton" aria-label="Configuración">⚙</button></div>
+      </header>
+      <div class="joystick" id="joystick" aria-label="Joystick de movimiento"><div class="joystick-ring"></div><div class="joystick-thumb" id="joystickThumb"></div></div>
+      <section class="action-zone"><div class="action-grid" id="actionGrid"></div><div class="set-switcher"><button id="prevSet" aria-label="Set anterior">‹</button><span id="setName">Hunt</span><button id="nextSet" aria-label="Siguiente set">›</button></div></section>
+      <nav class="bottom-dock">
+        <button id="modeButton" class="active" aria-label="Cambiar modo touch o mouse"><span id="modeIcon">☝</span><small id="modeText">Touch</small></button>
+        <button id="chatButton" aria-label="Abrir chat"><span>💬</span><small>Chat</small></button>
+        <button id="fullscreenButton" aria-label="Pantalla completa"><span>⛶</span><small>Full</small></button>
+      </nav>
+      <div class="chat-sheet hidden-ui" id="chatSheet"><button class="chat-close" id="chatClose" aria-label="Cerrar chat">×</button><div class="chat-copy">Escribe con el teclado normal de tu celular o tablet</div><form id="chatForm"><input id="chatInput" placeholder="Mensaje para Tibia..." enterkeyhint="send" autocomplete="off" spellcheck="true" /><button type="submit">Enviar</button></form></div>
+      <div class="modal-backdrop hidden-ui" id="settingsModal">
+        <section class="settings-card">
+          <div class="settings-heading"><div><span class="eyebrow">TIBIA ROUTER</span><h2>Configuración</h2></div><button id="settingsClose" aria-label="Cerrar configuración">×</button></div>
+          <div class="settings-tabs"><button class="tab active" data-tab="connection">Conexión</button><button class="tab" data-tab="controls">Controles</button><button class="tab" data-tab="quality">Calidad</button></div>
+          <div class="tab-panel" data-panel="connection">
+            <label>Signaling WebSocket<input id="signalingInput" placeholder="wss://tu-servidor/ws" inputmode="url" /></label>
+            <label>Session ID<input id="sessionInput" placeholder="roberto-01" value="demo" /></label>
+            <p class="settings-note">La web no pide ni guarda tu contraseña de Tibia. El login se hace únicamente dentro del cliente oficial transmitido.</p>
+            <button class="primary-button" id="connectButton">Conectar host</button><button class="secondary-button" id="demoButton">Volver a demo</button>
+          </div>
+          <div class="tab-panel hidden-ui" data-panel="controls">
+            <div class="control-editor-head"><strong id="editorSetName">Set Hunt</strong><div class="mini-switch"><button id="editorPrevSet">‹</button><button id="editorNextSet">›</button></div></div>
+            <div id="actionEditor" class="action-editor"></div>
+            <p class="settings-note">Cada botón manda una sola tecla al host. No hay macros ni automatización.</p>
+            <button class="secondary-button" id="resetControls">Restablecer controles</button>
+          </div>
+          <div class="tab-panel hidden-ui" data-panel="quality">
+            <div class="quality-options" id="qualityOptions">
+              <button data-quality="data" class="quality-option active"><strong>Ahorrar datos</strong><span>720p · 30 FPS · ~1.5 Mbps</span></button>
+              <button data-quality="balanced" class="quality-option"><strong>Equilibrada</strong><span>720/1080p · 30 FPS · ~2.5 Mbps</span></button>
+              <button data-quality="quality" class="quality-option"><strong>Calidad</strong><span>1080p · 30 FPS · ~4 Mbps</span></button>
+            </div>
+            <p class="settings-note">El perfil se envía al host para que ajuste resolución y bitrate cuando el agente lo soporte.</p>
+          </div>
+        </section>
+      </div>
+      <div class="toast hidden-ui" id="toast"></div><div class="rotate-hint">↻<br>Gira el dispositivo para jugar en horizontal</div>
+    </section>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
