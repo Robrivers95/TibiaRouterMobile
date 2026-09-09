@@ -1,0 +1,12 @@
+{
+  "name": "Tibia Router Mobile",
+  "short_name": "Tibia Router",
+  "description": "Interfaz móvil para una sesión remota del cliente oficial de Tibia.",
+  "start_url": "/TibiaRouterMobile/",
+  "scope": "/TibiaRouterMobile/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0b1016",
+  "theme_color": "#0b1016",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
